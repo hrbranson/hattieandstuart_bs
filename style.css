@@ -1,0 +1,12 @@
+body {
+    background-color: #FAF9F6;
+    font-family: 'EB Garamond', serif;
+    color: black;
+}
+
+h3 {
+    font-family: 'EB Garamond', serif;
+    color: black;
+}
+
+#map { height: 180px; }

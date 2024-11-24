@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hattie & Stuart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+    <script src="nav.js"></script>
+  </head>
+  <body>
+    <div class="d-flex justify-content-center"><img src="bluemonogram.svg" alt="H&S Monogram" class="img-fluid" style="max-width: 200px;"></div>
+    <nav class="navbar nav-underline navbar-expand-lg flex-column flex-sm-row">
+      <div class="container-fluid"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCentered" aria-controls="navbarCentered" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarCentered">
+          <ul class="navbar-nav gap-3">
+            <li class="nav-item"><a class="nav-link section-switch" data-section="home" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="ood" href="#">Order of the day</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="rsvp" href="#">RSVP</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="faq" href="#">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="transport" href="#">Transport</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="hotels" href="#">Hotels</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="registry" href="#">Registry</a></li>
+            <li class="nav-item"><a class="nav-link section-switch" data-section="photos" href="#">Photos</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid text-center mt-4">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div id="home">
+            <h3>Welcome to the website for Hattie and Stuart's wedding!</h3>
+            <div class="row align-items-center mt-4">
+              <div class="col"> Here you will find all the information you need about the day, including accommodation, transportation and registry details. 
+                Please do contact us at hattieandstuart@gmail.com if you have any further questions. We look forward to seeing you on the day! </div>
+            </div>
+            <div class="row mt-4 align-items-center">
+              <div class="col">
+                <div class="d-flex justify-content-center"><img src="church.png" alt="Church" class="img-fluid" style="max-width: 300px;"></div>
+              </div>
+              <div class="col">
+                <p>Saturday 22<SUP>nd</SUP> March 2025</p>
+                <p>St. Andrew's Church, Prestwold</p>
+                <p>Leicestershire, LE12 5SH</p>
+              </div>
+              <div class="col">
+                <div class="d-flex justify-content-center"><img src="hall.svg" alt="Prestwold Hall" class="img-fluid" style="max-width: 300px;"></div>
+              </div>
+            </div>
+          </div>
+          <div id="ood" style="display: none;">
+            <div class="d-flex justify-content-center">
+                <img src="ootd.svg" alt="Order of the day image" class="img-fluid" style="max-width: 250px;">
+            </div>
+          </div>
+          <div id="rsvp" style="display: none;">
+            <section class="text-start mb-4" style="margin: auto; max-width: 450px; border: solid #dee2e6; border-radius: 0.375em; padding: 1.5em;">
+              <h4>Please submit an RSVP for each guest</h4>
+              <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbzNL1QWE0BQY5gKqbMVP4FXPIaE5xBq2gkOerVPf1mPcecGag0Nzn61C8miyOscDiju/exec" method="post">
+                <div class="mb-3">
+                  <label for="names" class="form-label">Name</label>
+                  <input type="text" name="names" class="form-control" placeholder="First & last name" required>
+                </div>
+                <div class="radio-group form-check mb-3">
+                  <input type="radio" name="response" class="form-check-input" value="Accept" id="responseCheck1" required>
+                  <label class="form-check-label" for="responseCheck1">Accept with pleasure</label>
+                </div>
+                <div class="radio-group form-check mb-3">
+                  <input type="radio" name="response" class="form-check-input" value="Decline" id="responseCheck2" required>
+                  <label class="form-check-label" for="responseCheck2">Regretfully decline</label>
+                </div>
+                <div id="additional-fields" class="mb-3" style="display: none;">
+                  <label for="dietaryReqs" class="form-label">Dietary requirements</label>
+                  <input type="text" name="dietaryReqs" class="form-control" placeholder="E.g. gluten free, vegetarian">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email">
+                  <label for="phone" class="form-label">Mobile number</label>
+                  <input type="tel" class="form-control" name="phone">
+                  <label for="address" class="form-label">Address</label>
+                   <textarea name="address" class="form-control" rows="5"></textarea>
+                  <label for="songRequest" class="form-label">Song request</label>
+                  <input type="text" class="form-control" name="songRequest" placeholder="Let us know what song it takes to get you on the dance floor!">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              <div id="success-message" style="display:none; margin-top:20px; color:rgb(10, 7, 65); font-size:25px;">Thank you for submitting your RSVP</div>
+            </section>
+          </div>
+          <div id="faq" style="display: none">
+            <h3>What should I wear?</h3>
+            <p>The dress code is formal. Ladies, please avoid wearing white or shades of light blue/lilac as these are reserved for the bridal party. As the walk from St. Andrew's Church to Prestwold Hall is gravel, we recommend a block heel rather than a stiletto. Gentlemen must wear a suit with tie. Military guests please refrain from wearing uniform or medals; you are welcome to wear a military tie with your suit. People not dressed appropriately will not be permitted into the ceremony.</p>
+            <br>
+            <h3>What time should I arrive?</h3>
+            <p>The ceremony begins at 1:30 pm, so we ask that you arrive by 1 pm to get seated.</p>
+            <br>
+            <h3>Is the wedding indoors or outdoors?</h3>
+            <p>The ceremony will take place in St. Andrew's Church on the Prestwold estate, and the heating will be on. The church is a short 5-minute walk from Prestwold Hall, across a gravel path. The remainder of the day will be inside Prestwold Hall with gardens available to get some fresh air if needed.</p>
+            <br>
+            <h3>Can I take pictures with my phone or camera during the wedding?</h3>
+            <p>We ask that you do not take any photos or videos during the ceremony as we want you all to be present with us in the moment. We have two professional photographers to capture everything, and we will share these with you after the wedding. After the ceremony, yes! Please feel free to take as many photos or videos as you like. Don't forget to share them with us on WhatsApp or email them to us at hattieandstuart@gmail.com.</p>
+            <br>
+            <h3>Can I bring a plus one?</h3>
+            <p>Unfortunately, we cannot accommodate additional guests. If you have a plus one, it is clearly indicated on your formal invitation.</p>
+            <br>
+            <h3>Is there parking?</h3>
+            <p>Car parking is available at Prestwold Hall and St. Andrew's Church. You are able to leave your car overnight in the car park as long as they are collected by 10 am Sunday 23rd March.</p>
+          </div>
+          <div id="transport" style="display: none;">
+            <p>Prestwold Hall is in a rural location. We strongly advise you pre-book a taxi (or Uber) for midnight when the party finishes. 
+              Loughborough is a 10-minute drive from Prestwold Hall. 
+              There is a direct train from Loughborough to London St. Pancras International, but check the last train time in advance.</p>
+              <div class="mt-2 text-center">
+                <div class="col-md-6"></div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">Admiral Taxis Loughborough</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">01509 440121</h6>
+                    <a href="https://www.admiraltaxis.com/" class="card-link" target="_blank" rel="noopener">https://www.admiraltaxis.com/</a>
+                  </div>
+                </div>
+              </div>
+            <div class="mt-2 text-center">
+              <div class="col-md-6"></div>
+                <div class="card mt-4" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Loughborough Taxis</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">01509 590013</h6>
+                    <a href="https://www.taxisloughborough.co.uk/" class="card-link" target="_blank" rel="noopener">https://www.taxisloughborough.co.uk/</a>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2 text-center">
+                <div class="col-md-6"></div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Kaycabs Loughborough Taxis</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 437164</h6>
+                      <a href="https://www.kaycabs.com/" class="card-link" target="_blank" rel="noopener">https://www.kaycabs.com/</a>
+                    </div>
+                  </div>
+                </div>
+              <div class="mt-2 text-center">
+                <div class="col-md-6"></div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Nova Cabs</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 215868</h6>
+                      <a href="https://novacab.taxi/" class="card-link" target="_blank" rel="noopener">https://novacab.taxi/</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-2 text-center">
+                  <div class="col-md-6"></div>
+                    <div class="card mt-4" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">ADT Taxis</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">01509 260000</h6>
+                        <a href="https://www.adt-taxis.co.uk/" class="card-link" target="_blank" rel="noopener">https://www.adt-taxis.co.uk/</a>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+          <div id="hotels" style="display: none;">
+            <p>Due to limited availability, we can only offer rooms in the hall to close family. 
+              We recommend that you stay in Loughborough (10 minute drive) or one of the surrounding areas such as Quorn or Barrow upon Soar when attending our wedding. 
+              Recommendations for hotels or guesthouses are listed below.</p>
+            <div class="mt-2 text-start">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Caravelli</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 211228</h6>
+                      <p class="card-text">
+                        <address>
+                          The Old Manor, 11 Sparrow Hill, Loughborough, LE11 1BT
+                        </address>
+                        <p>3.3 miles from Prestwold Hall</p>
+                      </p>
+                      <a href="https://www.caravelli.co.uk/" class="card-link" target="_blank" rel="noopener">https://www.caravelli.co.uk/</a>
+                    </div>
+                  </div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Burleigh Court Hotel</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 633030</h6>
+                      <p class="card-text">
+                        <address>
+                          Off Ashby Road, A512 Loughborough University West Park, Loughborough, LE11 3GR
+                        </address>
+                        <p>6 miles from Prestwold Hall</p>
+                      </p>
+                      <a href="https://www.burleigh-court.co.uk/rooms-suites/" class="card-link" target="_blank" rel="noopener">https://www.burleigh-court.co.uk/rooms-suites/</a>
+                    </div>
+                  </div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Holywell Guest House</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 731894</h6>
+                      <p class="card-text">
+                        <address>
+                          68A Leicester Road, Loughborough, LE11 2AG
+                        </address>
+                        <p>3.5 miles from Prestwold Hall</p>
+                      </p>
+                      <a href="https://holywellguesthouse.com/" class="card-link" target="_blank" rel="noopener">https://holywellguesthouse.com/</a>
+                    </div>
+                  </div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Hammer & Pincers</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 880735</h6>
+                      <p class="card-text">
+                        <address>
+                          5 East Road, Wymeswold, Loughborough, LE12 6ST
+                        </address>
+                        <p>3.2 miles from Prestwold Hall</p>
+                      </p>
+                      <a href="https://www.hammerandpincers.co.uk/" class="card-link" target="_blank" rel="noopener">https://www.hammerandpincers.co.uk/</a>
+                    </div>
+                  </div>
+                  <div class="card mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Quorn Country Hotel</h5>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">01509 880735</h6>
+                      <p class="card-text">
+                        <address>
+                          Charnwood House, Leicester Road, Quorn, Leicestershire, LE12 8BB
+                        </address>
+                        <p>4.9 miles from Prestwold Hall</p>
+                      </p>
+                      <a href="ttps://www.quorncountryhotel.co.uk/" class="card-link" target="_blank" rel="noopener">https://www.quorncountryhotel.co.uk/</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div id="map" style="width: 100%; height: 500px; position: relative;" x-class="leaflet-container leaflet-touch leaflet-retina leaflet-safari leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+          <div id="registry" style="display: none;">
+            <p>After the wedding, we plan to spend our three week honeymoon hiking in New Zealand. 
+                If you wish to give us a wedding gift, rather than buying us physical items, we'd instead be delighted to receive a contribution to our honeymoon.</p>
+              <p>
+                If you choose to, please give your gift through our <a href="https://paypal.me/hattieandstuart?country.x=GB&locale.x=en_GB">PayPal</a>, and please do include your name
+                so we can thank you properly.
+                At the wedding, there will be a place to leave cards if you choose to bring one.
+              </p>
+            <div class="d-flex justify-content-center"><img src="nz.png" alt="New Zealand" class="img-fluid" style="max-width: auto;"></div>
+          </div>
+          <div id="photos" style="display: none;">
+            <p>Photos of the day will be made available here after the event.</p>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  </body>
+</html>
